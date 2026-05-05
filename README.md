@@ -16,6 +16,7 @@ your-repo/
 ├── .gitignore
 └── package.json
 ```
+<br>
 
 # 测试执行
 ```bash
@@ -27,6 +28,8 @@ npm run build   # 输出到 dist/
 
 npm start       # 终端输出
 ```
+<br>
+
 
 # Git 常见团队开发流程
 feature/xxx 个人功能开发 → dev 开发集成 → main 生产
@@ -95,13 +98,38 @@ git push origin --delete feature/init #删除远程分支（项目可设定PR合
 ```
 
 ## dev 累积更新后P/R推送到 main
+**特别注意**：
+PR dev to main 合并时 GitHub 会产生一个 merge commit，这个 commit 只存在于 main，dev 没有。
+把 main 的 merge commit 拉回 dev 同步一下 (可以设定自动化 actions)
+```bash
+git switch dev
+git pull origin main   # 或 git merge origin/main
+git push origin dev
+```
+
+## 在错误的分支修改了功能，切去新分支
+```bash
+# 1. 在当前位置（带着 commit）建立新分支
+git switch -c feature/my-feature
+
+# 2. 把本地 dev 退回到远端 dev 的状态
+git switch dev
+git reset --hard origin/dev
+
+# 3. 回到新分支，push 上去
+git switch feature/my-feature
+git push -u origin feature/my-feature
+```
+<br>
+
 
 ## 其他设定
 ```bash
 #适合跨平台团队, commit 时：CRLF → LF, checkout 时：保持 LF
 #.gitattributes 增加 * text=auto eol=lf
-git config --global core.autocrlf input 
-```
+git config --global core.autocrlf input   
+```  
+<br>
 
 # CI
 
