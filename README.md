@@ -69,7 +69,9 @@ commit 规范：
 # 方法：rebase（保持线性 commit 历史，推荐）
 git switch feature/my-feature
 git fetch origin
-git rebase origin/dev
+git log --oneline feature/my-feature..origin/dev   # 检查是否落后
+# 有输出的话 →
+git rebase origin/dev # 抓取最新dev 到 my-feature
 
 # 若有冲突，解决后：
 git add .
