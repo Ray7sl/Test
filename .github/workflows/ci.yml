@@ -7,6 +7,20 @@ on:
       - dev
 
 jobs:
+  check-source-branch:
+    name: Check Source Branch
+    runs-on: ubuntu-latest
+    if: github.base_ref == 'main'
+    steps:
+      - name: Only allow PR from dev
+        run: |
+          if [ "${{ github.head_ref }}" != "dev" ]; then
+            echo "❌ PR to main must come from dev branch!"
+            echo "   Current source: ${{ github.head_ref }}"
+            exit 1
+          fi
+          echo "✅ Source branch is dev, proceeding."
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
