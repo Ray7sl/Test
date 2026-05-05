@@ -37,9 +37,17 @@ commit 规范：
 - chore: 构建 / 工具
 - docs: 文档
 
-## 3. 功能开发完成 → 合并到 dev（PR/MR）
+## 3. 功能开发完成, 网页提 PR → 合并到 dev
+## 4. 团队 review → 合并
+
+## 5. 本地更新 dev
 ```bash
+git switch dev
+git pull origin dev
+git branch -d feature/login-page    #本地删除分支
+git push origin --delete feature/login-page #删除远程分支（设定可选自动执行，确认 PR 已合并后）
 ```
+
 ## 其他设定
 ```bash
 #适合跨平台团队, commit 时：CRLF → LF, checkout 时：保持 LF
