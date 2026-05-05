@@ -13,7 +13,7 @@ git branch -vv      #检查本地分支是否绑定了远程分支（upstream）
 
 ## 1. 更新主干分支（main / dev）
 ```bash
-git checkout main
+git switch main
 git pull origin main
 
 git switch dev
