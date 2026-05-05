@@ -1,6 +1,7 @@
 # Test
 学习项目
 
+```
 your-repo/
 ├── .github/
 │   └── workflows/
@@ -14,6 +15,7 @@ your-repo/
 ├── .gitattributes          # 跨平台换行符设定
 ├── .gitignore
 └── package.json
+```
 
 # 测试执行
 ```bash
