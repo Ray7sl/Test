@@ -120,26 +120,6 @@ git reset --hard origin/dev
 git switch feature/my-feature
 git push -u origin feature/my-feature
 ```
-
-## 当前分支改到一半，需要临时切去处理其他需求
-```bash
-# 储藏所有改动（-u 含 untracked 文件）
-git stash push -u -m "feat: xxx 做到一半"
-
-# 此时工作区干净，可以安全切换分支
-git switch feature/other
-# ...处理其他需求，正常 commit push...
-
-# 回来继续之前的工作
-git switch feature/my-feature
-git stash pop              # 取出最近一条 stash，恢复工作区
-
-# 常用 stash 命令
-git stash list             # 查看所有 stash 记录
-git stash pop              # 取出最近一条（取出后从栈里删除）
-git stash apply stash@{1}  # 取出指定条，但不删除（可多次应用）
-git stash drop stash@{0}   # 手动删除指定条
-```
 <br>
 
 
