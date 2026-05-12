@@ -71,19 +71,26 @@ commit 规范：
 
 ## 3. P/R前检查，功能分支可能落后 dev（开发过程中同步最新进度）
 ```bash
-# 方法：rebase（保持线性 commit 历史，推荐）
+# 简化用法：merge，同步 dev 最新进度
 git switch feature/my-feature
 git fetch origin
-git log --oneline feature/my-feature..origin/dev   # 检查是否落后
-# 有输出的话 →
-git rebase origin/dev # 抓取最新dev 到 my-feature
+git merge origin/dev
 
-# 若有冲突，解决后：
+# 如果已有 upstream，可直接 git push
+git push origin feature/my-feature
+
+---------------
+# 进阶用法：rebase，同步 dev 最新进度
+git switch feature/my-feature
+git fetch origin
+git rebase origin/dev
+
+# 如果发生冲突，解决后：
 git add .
 git rebase --continue
 
-# rebase 后需要 force push（因为 commit 历史改变了）
-git push --force-with-lease
+# 如果已有 upstream，可简写为 git push --force-with-lease
+git push --force-with-lease origin feature/my-feature
 ```
 
 ## 4. 功能开发完成, 网页提 PR → 合并到 dev
